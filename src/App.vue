@@ -2,9 +2,7 @@
   <div>
     <h1>Witaj w systemie do zapisów na zajęcia</h1>
     <div v-if="!isAuthenticated">
-      Zaloguj się e-mailem
-      <input type="text" v-model="email">
-      <button @click="logIn()">Wchodzę</button>
+      <login-form @login="logIn($event)"></login-form>
     </div>
     <div v-else>
       <h2>Witaj {{email}}</h2>
@@ -15,7 +13,9 @@
 
 <script>
 import "milligram";
+import LoginForm from "./LoginForm";
 export default {
+    components: {LoginForm},
     data(){
         return{
           email: '',
@@ -28,10 +28,8 @@ export default {
       },
       logOut() {
         this.isAuthenticated = false;
-
       },
     },
-
 }
 </script>
 
